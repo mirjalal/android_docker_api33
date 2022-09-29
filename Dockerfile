@@ -52,7 +52,7 @@ ENV ANDROID_HOME /opt/adk
 
 RUN mkdir -p ${HOME}/repo/mirjalal
 RUN cd ${HOME}/repo/mirjalal
-RUN git clone https://github.com/InsertKoinIO/koin-annotations.git -b master "structure"
+RUN git clone https://github.com/InsertKoinIO/koin-annotations.git "structure"
 RUN cd structure/quickstart \
     && chmod +x ./gradlew \
     && ./gradlew kspDebugKotlin \
