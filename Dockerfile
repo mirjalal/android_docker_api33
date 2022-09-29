@@ -36,19 +36,19 @@ RUN echo $JAVA_HOME
 RUN export PATH=$PATH:${JAVA_HOME}/bin
 
 # install android stuff
-# RUN mkdir -p /opt/adk \
-#     && wget -q https://dl.google.com/android/repository/commandlinetools-linux-${ANDROID_SDK_VERSION}_latest.zip \
-#     && unzip commandlinetools-linux-${ANDROID_SDK_VERSION}_latest.zip -d /opt/adk \
-#     && rm commandlinetools-linux-${ANDROID_SDK_VERSION}_latest.zip
+RUN mkdir -p /opt/adk \
+    && wget -q https://dl.google.com/android/repository/commandlinetools-linux-${ANDROID_SDK_VERSION}_latest.zip \
+    && unzip commandlinetools-linux-${ANDROID_SDK_VERSION}_latest.zip -d /opt/adk \
+    && rm commandlinetools-linux-${ANDROID_SDK_VERSION}_latest.zip
 
-# ADD pkg.txt /sdk
-# RUN mkdir -p /root/.android
-# RUN touch /root/.android/repositories.cfg
+ADD pkg.txt /sdk
+RUN mkdir -p /root/.android
+RUN touch /root/.android/repositories.cfg
 
-# RUN cd /opt/adk/cmdline-tools/bin && ls && yes | ./sdkmanager --licenses && yes | ./sdkmanager "build-tools;${BUILD_TOOLS}" "platforms;${ANDROID_PLATFORM}"
-# RUN mkdir -p ${HOME}/.android/
-# ENV ANDROID_HOME /opt/adk
- 
+RUN cd /opt/adk/cmdline-tools/bin && ls && yes | ./sdkmanager --licenses && yes | ./sdkmanager "build-tools;${BUILD_TOOLS}" "platforms;${ANDROID_PLATFORM}"
+RUN mkdir -p ${HOME}/.android/
+ENV ANDROID_HOME /opt/adk
+
 # RUN mkdir -p ${HOME}/repo/mirjalal
 # RUN cd ${HOME}/repo/mirjalal
 # RUN git clone https://github.com/mirjalal/Structure.git -b master "structure"
