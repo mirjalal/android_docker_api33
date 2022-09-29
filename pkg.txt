@@ -1,0 +1,6 @@
+build-tools;32.0.0
+platforms;android-22
+platform-tools
+extras;android;m2repository
+extras;google;google_play_services
+extras;google;m2repository
