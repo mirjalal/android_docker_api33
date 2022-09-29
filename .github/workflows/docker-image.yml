@@ -1,0 +1,11 @@
+name: Docker Image CI
+
+on: push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag android_docker_api33:${{ github.event.head_commit.id }}
