@@ -1,4 +1,4 @@
-FROM ubuntu:16.04
+FROM ubuntu:21.04
  
 RUN apt-get update
 RUN yes | apt-get upgrade
