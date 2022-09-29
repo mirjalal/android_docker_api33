@@ -37,8 +37,8 @@ RUN touch /root/.android/repositories.cfg
 RUN wget -q https://dl.google.com/android/repository/platform-tools-latest-linux.zip
 RUN unzip platform-tools-latest-linux.zip -d /opt/adk
 RUN rm platform-tools-latest-linux.zip
-RUN yes | ./opt/adk/tools/bin/sdkmanager --licenses
-RUN yes | ./opt/adk/tools/bin/sdkmanager "build-tools;${BUILD_TOOLS}" "platforms;${ANDROID_PLATFORM}"
+RUN yes | ./opt/adk/cmdlinetools/latest/bin/sdkmanager --licenses
+RUN yes | ./opt/adk/cmdlinetools/latest/bin/sdkmanager "build-tools;${BUILD_TOOLS}" "platforms;${ANDROID_PLATFORM}"
 RUN mkdir -p ${HOME}/.android/
 ENV ANDROID_HOME /opt/adk
  
