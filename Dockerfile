@@ -1,4 +1,4 @@
-FROM adoptopenjdk:openjdk11@sha256:3262629245da5917039afcbb98dc0c84c6a6e319c1dc9c87f03656505e168a19
+FROM adoptopenjdk/openjdk11@sha256:3262629245da5917039afcbb98dc0c84c6a6e319c1dc9c87f03656505e168a19
  
 RUN apt-get update -qqy && apt-get upgrade && apt-get -qqy install libglu1 build-essential virtinst bridge-utils
  
