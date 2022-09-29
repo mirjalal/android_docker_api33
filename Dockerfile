@@ -1,4 +1,4 @@
-FROM debian
+FROM ubuntu:16.04
  
 RUN apt-get update
 RUN yes | apt-get upgrade
@@ -7,6 +7,8 @@ RUN yes | apt-get install apt-utils
 RUN yes | apt-get install build-essential bridge-utils wget zip unzip openjdk-11-jdk
  
 ENV UDIDS=""
+
+RUN update-alternatives --list java
 
 #=====================
 # Install android sdk
@@ -26,16 +28,16 @@ ENV BUILD_TOOLS=$BUILD_TOOLS
 ENV JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64/jre/bin/java
 
 # install android stuff
-RUN mkdir -p /opt/adk
-RUN wget -q https://dl.google.com/android/repository/commandlinetools-linux-${ANDROID_SDK_VERSION}_latest.zip
-RUN unzip commandlinetools-linux-${ANDROID_SDK_VERSION}_latest.zip -d /opt/adk
-RUN rm commandlinetools-linux-${ANDROID_SDK_VERSION}_latest.zip
+RUN mkdir -p /opt/adk \
+    && wget -q https://dl.google.com/android/repository/commandlinetools-linux-${ANDROID_SDK_VERSION}_latest.zip \
+    && unzip commandlinetools-linux-${ANDROID_SDK_VERSION}_latest.zip -d /opt/adk \
+    && rm commandlinetools-linux-${ANDROID_SDK_VERSION}_latest.zip
 
 ADD pkg.txt /sdk
 RUN mkdir -p /root/.android
 RUN touch /root/.android/repositories.cfg
 
-RUN cd /opt/adk/cmdline-tools/bin && yes | ./sdkmanager --licenses && yes | ./sdkmanager "build-tools;${BUILD_TOOLS}" "platforms;${ANDROID_PLATFORM}"
+RUN cd /opt/adk/cmdline-tools/bin && ls && yes | ./sdkmanager --licenses && yes | ./sdkmanager "build-tools;${BUILD_TOOLS}" "platforms;${ANDROID_PLATFORM}"
 RUN mkdir -p ${HOME}/.android/
 ENV ANDROID_HOME /opt/adk
  
