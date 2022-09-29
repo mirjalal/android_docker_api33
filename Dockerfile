@@ -18,31 +18,30 @@ ARG BUILD_TOOLS="32.0.0"
 ENV ANDROID_PLATFORM=$ANDROID_PLATFORM
 ENV BUILD_TOOLS=$BUILD_TOOLS
  
-# install adk
-RUN mkdir -p /opt/adk
-RUN wget -q https://dl.google.com/android/repository/commandlinetools-linux-${ANDROID_SDK_VERSION}_latest.zip
-RUN unzip commandlinetools-linux-${ANDROID_SDK_VERSION}_latest.zip -d /opt/adk
-RUN rm commandlinetools-linux-${ANDROID_SDK_VERSION}_latest.zip
-
 RUN cd $HOME
 RUN wget https://download.java.net/java/GA/jdk11/9/GPL/openjdk-11.0.2_linux-x64_bin.tar.gz
 RUN tar -xzf openjdk-11.0.2_linux-x64_bin.tar.gz
 ENV JAVA_HOME=$HOME/jdk-11.0.2
 ENV JAVA_HOME=$HOME/jdk-11.0.2/bin
 
+# install adk
+RUN mkdir -p /opt/adk
+RUN wget -q https://dl.google.com/android/repository/commandlinetools-linux-${ANDROID_SDK_VERSION}_latest.zip
+RUN unzip commandlinetools-linux-${ANDROID_SDK_VERSION}_latest.zip -d /opt/adk
+RUN rm commandlinetools-linux-${ANDROID_SDK_VERSION}_latest.zip
+
 ADD pkg.txt /sdk
 RUN mkdir -p /root/.android
 RUN touch /root/.android/repositories.cfg
 
-RUN wget -q https://dl.google.com/android/repository/platform-tools-latest-linux.zip
-RUN unzip platform-tools-latest-linux.zip -d /opt/adk
-RUN rm platform-tools-latest-linux.zip
-RUN yes | ./opt/adk/cmdlinetools/latest/bin/sdkmanager --licenses
-RUN yes | ./opt/adk/cmdlinetools/latest/bin/sdkmanager "build-tools;${BUILD_TOOLS}" "platforms;${ANDROID_PLATFORM}"
+RUN cd /opt/adk/cmdlinetools/latest/bin
+RUN yes | ./sdkmanager --licenses
+RUN yes | ./sdkmanager "build-tools;${BUILD_TOOLS}" "platforms;${ANDROID_PLATFORM}"
 RUN mkdir -p ${HOME}/.android/
 ENV ANDROID_HOME /opt/adk
  
-RUN mkdir -p ${HOME}/repo
+RUN mkdir -p ${HOME}/repo/mirjalal
+RUN cd ${HOME}/repo/mirjalal
 RUN git clone https://github.com/mirjalal/Structure.git -b master "structure"
 RUN cd structure
 RUN chmod +x ./gradlew
