@@ -53,10 +53,10 @@ ENV ANDROID_HOME /opt/adk
 RUN mkdir -p ${HOME}/repo/mirjalal
 RUN cd ${HOME}/repo/mirjalal
 RUN git clone https://github.com/mirjalal/Structure.git -b master "structure"
-RUN cd structure
-RUN chmod +x ./gradlew
-RUN ./gradlew kspDebugKotlin
-RUN ./gradlew kspReleaseKotlin
-RUN ./gradlew check
-RUN ./gradlew build
-RUN ./gradlew test
+RUN cd structure \
+    && chmod +x ./gradlew \
+    && ./gradlew kspDebugKotlin \
+    && ./gradlew kspReleaseKotlin \
+    && ./gradlew check \
+    && ./gradlew build \
+    && ./gradlew test
