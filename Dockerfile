@@ -2,7 +2,8 @@ FROM debian
  
 RUN apt-get update
 RUN yes | apt-get upgrade
-RUN yes | apt-get install build-essential bridge-utils
+RUN yes | apt-get install apt-utils
+RUN yes | apt-get install build-essential bridge-utils wget
  
 ENV UDIDS=""
 
