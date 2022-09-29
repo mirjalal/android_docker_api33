@@ -3,7 +3,7 @@ FROM ubuntu:latest
 # RUN apt-get update
 # RUN yes | apt-get upgrade
 # RUN yes | apt-get dist-upgrade
-RUN yes | apt-get install apt-utils
+# RUN yes | apt-get install apt-utils
 RUN yes | apt-get install build-essential bridge-utils wget zip unzip openjdk-11-jdk
  
 ENV UDIDS=""
