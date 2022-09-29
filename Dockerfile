@@ -23,7 +23,7 @@ ENV BUILD_TOOLS=$BUILD_TOOLS
 #     && tar -xzf openjdk-11.0.2_linux-x64_bin.tar.gz \
 #     && export JAVA_HOME="$(dirname $(dirname $(readlink -f $(which java))))"
 
-ENV JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java
+ENV JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64/jre/bin/java
 
 # install android stuff
 RUN mkdir -p /opt/adk
