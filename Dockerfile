@@ -14,26 +14,28 @@ RUN java --version
 
 ENV UDIDS=""
 
-RUN update-alternatives --list java
+# RUN update-alternatives --list java
 
-# #=====================
-# # Install android sdk
-# #=====================
-# ARG ANDROID_SDK_VERSION=8512546
-# ENV ANDROID_SDK_VERSION=$ANDROID_SDK_VERSION
-# ARG ANDROID_PLATFORM="android-33"
-# ARG BUILD_TOOLS="32.0.0"
-# ENV ANDROID_PLATFORM=$ANDROID_PLATFORM
-# ENV BUILD_TOOLS=$BUILD_TOOLS
+#=====================
+# Install android sdk
+#=====================
+ARG ANDROID_SDK_VERSION=8512546
+ENV ANDROID_SDK_VERSION=$ANDROID_SDK_VERSION
+ARG ANDROID_PLATFORM="android-33"
+ARG BUILD_TOOLS="32.0.0"
+ENV ANDROID_PLATFORM=$ANDROID_PLATFORM
+ENV BUILD_TOOLS=$BUILD_TOOLS
  
-# # RUN cd $HOME
-# # RUN wget https://download.java.net/java/GA/jdk11/9/GPL/openjdk-11.0.2_linux-x64_bin.tar.gz \
-# #     && tar -xzf openjdk-11.0.2_linux-x64_bin.tar.gz \
-# #     && export JAVA_HOME="$(dirname $(dirname $(readlink -f $(which java))))"
+# RUN cd $HOME
+# RUN wget https://download.java.net/java/GA/jdk11/9/GPL/openjdk-11.0.2_linux-x64_bin.tar.gz \
+#     && tar -xzf openjdk-11.0.2_linux-x64_bin.tar.gz \
+#     && export JAVA_HOME="$(dirname $(dirname $(readlink -f $(which java))))"
 
-# ENV JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64/jre/bin/java
+ENV JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64/
+RUN echo $JAVA_HOME
+RUN export PATH=$PATH:${JAVA_HOME}/bin
 
-# # install android stuff
+# install android stuff
 # RUN mkdir -p /opt/adk \
 #     && wget -q https://dl.google.com/android/repository/commandlinetools-linux-${ANDROID_SDK_VERSION}_latest.zip \
 #     && unzip commandlinetools-linux-${ANDROID_SDK_VERSION}_latest.zip -d /opt/adk \
