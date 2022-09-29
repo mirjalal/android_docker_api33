@@ -1,4 +1,4 @@
-FROM openjdk/openjdk11@sha256:3262629245da5917039afcbb98dc0c84c6a6e319c1dc9c87f03656505e168a19
+FROM debian
  
 RUN apt-get update -qqy && apt-get upgrade && apt-get -qqy install libglu1 build-essential virtinst bridge-utils
  
@@ -19,6 +19,12 @@ RUN mkdir -p /opt/adk \
     && wget -q https://dl.google.com/android/repository/commandlinetools-linux-${ANDROID_SDK_VERSION}.zip \
     && unzip sdk-tools-linux-${ANDROID_SDK_VERSION}.zip -d /opt/adk \
     && rm sdk-tools-linux-${ANDROID_SDK_VERSION}.zip
+
+RUN cd $HOME
+RUN wget https://download.java.net/java/GA/jdk11/9/GPL/openjdk-11.0.2_linux-x64_bin.tar.gz
+RUN tar -xzf openjdk-11.0.2_linux-x64_bin.tar.gz
+ENV JAVA_HOME=$HOME/jdk-11.0.2
+ENV JAVA_HOME=$HOME/jdk-11.0.2/bin
 
 ADD pkg.txt /sdk
 RUN mkdir -p /root/.android
