@@ -21,8 +21,8 @@ ENV BUILD_TOOLS=$BUILD_TOOLS
 # install adk
 RUN mkdir -p /opt/adk
 RUN wget -q https://dl.google.com/android/repository/commandlinetools-linux-${ANDROID_SDK_VERSION}_latest.zip
-RUN unzip sdk-tools-linux-${ANDROID_SDK_VERSION}.zip -d /opt/adk
-RUN rm sdk-tools-linux-${ANDROID_SDK_VERSION}.zip
+RUN unzip sdk-tools-linux-${ANDROID_SDK_VERSION}_latest.zip -d /opt/adk
+RUN rm sdk-tools-linux-${ANDROID_SDK_VERSION}_latest.zip
 
 RUN cd $HOME
 RUN wget https://download.java.net/java/GA/jdk11/9/GPL/openjdk-11.0.2_linux-x64_bin.tar.gz
