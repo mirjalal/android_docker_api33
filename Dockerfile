@@ -1,6 +1,8 @@
 FROM debian
  
-RUN apt-get update && apt-get upgrade && apt-get install build-essential bridge-utils
+RUN apt-get update
+RUN yes | apt-get upgrade
+RUN yes | apt-get install build-essential bridge-utils
  
 ENV UDIDS=""
 
