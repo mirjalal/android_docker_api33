@@ -1,6 +1,6 @@
 FROM debian
  
-RUN apt-get update -qqy && apt-get upgrade && apt-get -qqy install libglu1 build-essential virtinst bridge-utils
+RUN apt-get update && apt-get upgrade && apt-get install build-essential bridge-utils
  
 ENV UDIDS=""
 
