@@ -34,7 +34,7 @@ ADD pkg.txt /sdk
 RUN mkdir -p /root/.android
 RUN touch /root/.android/repositories.cfg
 
-RUN cd /opt/adk/cmdlinetools/latest/bin
+RUN cd /opt/adk/cmdline-tools/bin
 RUN yes | ./sdkmanager --licenses
 RUN yes | ./sdkmanager "build-tools;${BUILD_TOOLS}" "platforms;${ANDROID_PLATFORM}"
 RUN mkdir -p ${HOME}/.android/
